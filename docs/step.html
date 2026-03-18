@@ -257,12 +257,12 @@
 
         function initializeTaskListCheckboxes(stepId) {
             const container = document.getElementById('markdown-content');
+            if (!container) return;
             const checkboxes = container.querySelectorAll('input[type="checkbox"]');
             if (checkboxes.length === 0) return;
 
             const allState = readCheckboxState();
-            const stepState = Array.isArray(allState[stepId]) ? allState[stepId] : [];
-            allState[stepId] = stepState;
+            const stepState = Array.isArray(allState[stepId]) ? allState[stepId] : (allState[stepId] = []);
 
             checkboxes.forEach((checkbox, index) => {
                 checkbox.disabled = false;
