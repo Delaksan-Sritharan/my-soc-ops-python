@@ -282,6 +282,64 @@
             });
         }
 
+        async function copyTextToClipboard(text) {
+            if (navigator.clipboard?.writeText && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                return;
+            }
+
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.setAttribute('readonly', '');
+            textArea.style.cssText = 'position: fixed; inset: auto; opacity: 0; pointer-events: none;';
+            document.body.appendChild(textArea);
+            textArea.select();
+
+            const successful = document.execCommand('copy');
+            textArea.remove();
+
+            if (!successful) {
+                throw new Error('Copy failed');
+            }
+        }
+
+        function initializeCodeBlockCopyButtons() {
+            const container = document.getElementById('markdown-content');
+            if (!container) return;
+
+            const codeBlocks = container.querySelectorAll('pre');
+            codeBlocks.forEach((block) => {
+                const code = block.querySelector('code');
+                if (!code || block.querySelector('.code-copy-btn')) return;
+
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'code-copy-btn';
+                button.textContent = 'Copy';
+                button.setAttribute('aria-label', 'Copy code block');
+
+                let resetTimeout;
+                button.addEventListener('click', async () => {
+                    try {
+                        await copyTextToClipboard(code.textContent ?? '');
+                        button.textContent = 'Copied!';
+                        button.classList.add('copied');
+                    } catch {
+                        button.textContent = 'Failed';
+                        button.classList.add('failed');
+                    }
+
+                    clearTimeout(resetTimeout);
+                    resetTimeout = setTimeout(() => {
+                        button.textContent = 'Copy';
+                        button.classList.remove('copied', 'failed');
+                    }, 1600);
+                });
+
+                block.appendChild(button);
+            });
+        }
+
         // Build sidebar navigation
         function buildSidebar() {
             const nav = document.getElementById('stepNav');
@@ -390,6 +448,7 @@
 
                 document.getElementById('markdown-content').innerHTML = marked.parse(md);
                 initializeTaskListCheckboxes(step.id);
+                initializeCodeBlockCopyButtons();
 
                 // If this is the completion page, add confetti!
                 if (step.id === '05-complete') {
