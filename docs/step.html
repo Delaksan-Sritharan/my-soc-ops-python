@@ -295,10 +295,10 @@
             document.body.appendChild(textArea);
             textArea.select();
 
-            const successful = document.execCommand('copy');
+            const copySucceeded = document.execCommand('copy');
             textArea.remove();
 
-            if (!successful) {
+            if (!copySucceeded) {
                 throw new Error('Copy failed');
             }
         }
