@@ -1,21 +1,38 @@
 <div id="game-container">
-  <div
-    class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50 fade-in"
-  >
-    <div class="text-center max-w-sm">
-      <h1 class="text-4xl font-bold font-display text-gray-900 mb-2">
+  <section class="landing-shell min-h-full p-6 fade-in">
+    <div class="landing-card w-full max-w-md mx-auto">
+      <p class="landing-kicker text-sm font-semibold text-center mb-3 reveal-1">
+        Conversation challenge
+      </p>
+      <h1
+        class="text-5xl font-bold font-display text-gray-900 text-center mb-2 reveal-2"
+      >
         Soc Ops
       </h1>
-      <p class="text-lg text-gray-600 mb-8">Social Bingo</p>
+      <p class="text-lg text-gray-700 text-center mb-6 reveal-3">
+        Social Bingo for people who would rather skip awkward small talk.
+      </p>
+
+      <div class="landing-strip rounded-lg p-3 mb-6 reveal-3">
+        <p class="text-sm text-gray-700 text-center">
+          25 prompts. 1 free space. Real conversations only.
+        </p>
+      </div>
 
       <div
-        class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8"
+        class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm card-hover mb-6 reveal-4"
       >
         <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
         <ul class="text-left text-gray-600 text-sm space-y-2">
-          <li>• Find people who match the questions</li>
-          <li>• Tap a square when you find a match</li>
-          <li>• Get 5 in a row to win!</li>
+          <li>
+            <span class="step-index">01</span> Find people who match the
+            questions
+          </li>
+          <li>
+            <span class="step-index">02</span> Tap a square when you find a
+            match
+          </li>
+          <li><span class="step-index">03</span> Get 5 in a row to win</li>
         </ul>
       </div>
 
@@ -23,10 +40,13 @@
         hx-post="/start"
         hx-target="#game-container"
         hx-swap="outerHTML"
-        class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors"
+        class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors landing-cta reveal-5"
       >
         Start Game
       </button>
+      <p class="text-xs text-gray-500 text-center landing-footnote reveal-5">
+        Play quick rounds. Reset anytime.
+      </p>
     </div>
-  </div>
+  </section>
 </div>
