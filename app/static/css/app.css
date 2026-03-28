@@ -1,3 +1,22 @@
+/* ===== Design Tokens ===== */
+:root {
+  --bg:            #0c0c0f;
+  --surface-1:     #161619;
+  --surface-2:     #1e1e24;
+  --surface-3:     #26262d;
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --accent:        #6366f1;
+  --accent-dim:    rgba(99, 102, 241, 0.15);
+  --accent-hover:  #818cf8;
+  --text-1:        #f4f4f5;
+  --text-2:        #a1a1aa;
+  --text-3:        #71717a;
+  --win-bg:        rgba(251, 191, 36, 0.12);
+  --win-border:    #fbbf24;
+  --win-text:      #fbbf24;
+}
+
 html,
 body,
 #app {
@@ -6,13 +25,9 @@ body,
 }
 
 body {
-  font-family:
-    "Segoe UI",
-    system-ui,
-    -apple-system,
-    sans-serif;
-  background-color: #0a0e27;
-  color: #ffffff;
+  font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-1);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -134,63 +149,63 @@ body {
 }
 
 .bg-white {
-  background-color: #141929;
-  border: 1px solid #1f2847;
+  background-color: var(--surface-1);
+  border: 1px solid var(--border);
 }
 .bg-gray-50 {
-  background-color: #0a0e27;
+  background-color: var(--bg);
 }
 .bg-gray-100 {
-  background-color: #141929;
+  background-color: var(--surface-3);
 }
 .bg-amber-100 {
-  background-color: #1a1f3a;
+  background-color: rgba(251, 191, 36, 0.08);
 }
 .bg-amber-200 {
-  background-color: #00ff88;
+  background-color: var(--win-bg);
 }
 .bg-accent {
-  background-color: #00d9ff;
+  background-color: var(--accent);
 }
 .bg-marked {
-  background-color: #00ff88;
+  background-color: var(--accent-dim);
 }
 .bg-black\/50 {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .text-white {
-  color: #ffffff;
+  color: var(--text-1);
 }
 .text-gray-500 {
-  color: #8892a8;
+  color: var(--text-3);
 }
 .text-gray-600 {
-  color: #7a8394;
+  color: var(--text-3);
 }
 .text-gray-700 {
-  color: #a0aec0;
+  color: var(--text-2);
 }
 .text-gray-800 {
-  color: #c0cfe0;
+  color: #c4c4cc;
 }
 .text-gray-900 {
-  color: #f0f4f8;
+  color: var(--text-1);
 }
 .text-green-600 {
-  color: #00ff88;
+  color: var(--accent-hover);
 }
 .text-green-800 {
-  color: #00dd77;
+  color: var(--accent-hover);
 }
 .text-amber-500 {
-  color: #ff00ff;
+  color: var(--win-text);
 }
 .text-amber-800 {
-  color: #00d9ff;
+  color: var(--win-text);
 }
 .text-amber-900 {
-  color: #00ff88;
+  color: var(--win-text);
 }
 
 .text-xs {
@@ -224,6 +239,11 @@ body {
 .font-bold {
   font-weight: 700;
 }
+.font-display {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
 
 .text-center {
   text-align: center;
@@ -239,33 +259,33 @@ body {
   border-bottom-width: 1px;
 }
 .border-gray-200 {
-  border-color: #1f2847;
+  border-color: var(--border);
 }
 .border-gray-300 {
-  border-color: #2a3558;
+  border-color: var(--border);
 }
 .border-amber-400 {
-  border-color: #ff00ff;
+  border-color: var(--win-border);
 }
 .border-marked-border {
-  border-color: #00ff88;
+  border-color: var(--accent);
 }
 
 .rounded {
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
 }
 .rounded-lg {
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
 }
 .rounded-xl {
-  border-radius: 0.75rem;
+  border-radius: 0.875rem;
 }
 
 .shadow-sm {
-  box-shadow: 0 0 12px rgba(0, 217, 255, 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 .shadow-xl {
-  box-shadow: 0 0 24px rgba(0, 217, 255, 0.2), inset 0 0 12px rgba(0, 217, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border);
 }
 
 .space-y-2 > * + * {
@@ -309,22 +329,22 @@ body {
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition-duration: 200ms;
 }
 .transition-colors {
   transition-property: color, background-color, border-color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition-duration: 200ms;
 }
 .duration-150 {
   transition-duration: 150ms;
 }
 
-button:active .active\:bg-gray-100 {
-  background-color: #1f2847;
+button.active\:bg-gray-100:active {
+  background-color: var(--surface-3);
 }
-button:active .active\:bg-accent-light {
-  background-color: #00b8cc;
+button.active\:bg-accent-light:active {
+  background-color: var(--accent-hover);
 }
 
 button {
@@ -370,22 +390,75 @@ button:disabled {
   animation: bounce 0.5s ease-out;
 }
 
-/* Dark theme neon glow effects */
-.glow-cyan {
-  box-shadow: 0 0 12px rgba(0, 217, 255, 0.3), inset 0 0 8px rgba(0, 217, 255, 0.1);
+/* ===== Animations ===== */
+
+/* Page / component entry */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.glow-cyan:hover {
-  box-shadow: 0 0 20px rgba(0, 217, 255, 0.5), inset 0 0 12px rgba(0, 217, 255, 0.15);
+
+.fade-in {
+  animation: fadeIn 0.35s ease-out both;
 }
-.glow-lime {
-  box-shadow: 0 0 12px rgba(0, 255, 136, 0.3), inset 0 0 8px rgba(0, 255, 136, 0.1);
+
+/* Modal entry */
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-.glow-lime:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 136, 0.5), inset 0 0 12px rgba(0, 255, 136, 0.15);
+
+.modal-enter {
+  animation: modalEnter 0.2s ease-out both;
 }
-.glow-magenta {
-  box-shadow: 0 0 12px rgba(255, 0, 255, 0.3), inset 0 0 8px rgba(255, 0, 255, 0.1);
+
+/* Board square staggered reveal */
+@keyframes squareFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-.glow-magenta:hover {
-  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5), inset 0 0 12px rgba(255, 0, 255, 0.15);
+
+.board-square {
+  animation: squareFadeIn 0.25s ease-out both;
 }
+
+.stagger-1 { animation-delay: 0ms; }
+.stagger-2 { animation-delay: 55ms; }
+.stagger-3 { animation-delay: 110ms; }
+.stagger-4 { animation-delay: 165ms; }
+.stagger-5 { animation-delay: 220ms; }
+
+/* ===== Card hover (replaces glow-*) ===== */
+.card-hover {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Legacy glow utilities — kept so old class names don't break */
+.glow-cyan,
+.glow-cyan:hover,
+.glow-lime,
+.glow-lime:hover,
+.glow-magenta,
+.glow-magenta:hover {}
